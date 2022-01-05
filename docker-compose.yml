@@ -1,0 +1,24 @@
+services:
+  front:
+    build: ./nuxt/
+    container_name: nuxt
+    restart: always
+    volumes:
+    - ./nuxt/webapp:/app
+    ports:
+    - '3000:3000'
+    environment:
+      PORT: 3000
+    command: "npm run dev"
+  back:
+    build: ./nest/
+    container_name: nest
+    restart: always
+    volumes:
+      - ./nest/forward-api:/app
+    ports:
+      - '4000:4000'
+      - '81:81'
+    environment:
+      PORT: 4000
+    command: "npm run start:dev"
