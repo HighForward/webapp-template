@@ -40,7 +40,35 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          global: true,
+          required: true,
+          type: 'Bearer'
+        },
+        user: {
+          property: 'user',
+          autoFetch: true
+        },
+        endpoints: {
+          login: { url: '/auth/login', method: 'post' },
+          // refresh: { url: "/api/auth/refresh-token", method: "post" },
+          logout: false,
+          user: { url: '/auth/user', method: 'get' }
+        }
+      }
+    }
+  },
+
+  axios: {
+    baseURL: "http://localhost:4000"  // here set your API url
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
