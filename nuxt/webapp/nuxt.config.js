@@ -47,7 +47,7 @@ export default {
     strategies: {
       local: {
         token: {
-          property: 'token',
+          property: 'access_token',
           global: true,
           required: true,
           type: 'Bearer'
@@ -67,7 +67,7 @@ export default {
   },
 
   axios: {
-    baseURL: "http://localhost:4000"  // here set your API url
+    baseURL: process.env.BACKEND_URL,  // here set your API url
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
